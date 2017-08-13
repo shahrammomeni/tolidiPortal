@@ -1,0 +1,19 @@
+@{ Layout = "~/Views/Shared/_rootLayout.cshtml"; }
+
+<center>
+    <div class="contentPane">
+        @RenderBody()
+    </div>
+</center>
+    @Html.DevExpress().Panel(settings => {
+        settings.Name = "RightPane";
+        settings.FixedPosition = PanelFixedPosition.WindowRight;
+        settings.Collapsible = true;
+        settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+        settings.ControlStyle.CssClass = "rightPane";
+        settings.Styles.Panel.CssClass = "panel";
+        settings.SetContent(() => {
+            Html.RenderPartial("ContentRightPartialView");
+        });
+    }).GetHtml()
+

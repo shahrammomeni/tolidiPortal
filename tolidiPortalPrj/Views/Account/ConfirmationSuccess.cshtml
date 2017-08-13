@@ -1,0 +1,13 @@
+﻿@using pres = Resources.Resource;
+@{
+    //Layout = "~/Views/Shared/_rootLayout.cshtml";
+    ViewBag.Title = pres.temp;
+}
+<br />
+<br />
+<div>
+    <h3>  @pres.temp </h3>
+</div>
+<div>
+    <h3>@Html.ActionLink(pres.temp, "Index", "Home") </h3> 
+</div>

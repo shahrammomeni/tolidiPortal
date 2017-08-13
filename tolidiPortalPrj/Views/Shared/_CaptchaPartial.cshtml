@@ -1,0 +1,15 @@
+
+@Html.DevExpress().Captcha(settings => {
+    settings.Name = "Captcha";
+    settings.CallbackRouteValues = new { Controller = "Account", Action = "CaptchaPartial" };
+
+    settings.CodeLength = 5;
+    //settings.ValidationSettings.RequiredField.IsRequired = true;
+    //settings.ValidationSettings.ErrorText = "test";
+    //settings.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithText;
+    
+    
+    
+    
+    settings.TextBox.Position = DevExpress.Web.Captcha.ControlPosition.Bottom;
+}).GetHtml()

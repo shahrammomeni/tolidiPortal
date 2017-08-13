@@ -1,0 +1,38 @@
+﻿
+@model tpr.Models.RegisterEdit
+@using pres = Resources.Resource;
+@{
+    ViewBag.Title = @pres.temp;
+    //Layout = "~/Views/Shared/_rootLayout.cshtml";
+
+}
+<b style="color:red">
+    @Html.ValidationSummary((ViewData["err"] ?? string.Empty).ToString())
+</b>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+ 
+    <div class="form-field">
+        @Html.TextBoxFor(model => model.UserName, new { disabled = "disabled", @readonly = "readonly", style = "width:250px; text-align: center;" })
+        @Html.HiddenFor(model => model.UserName)
+      
+    </div>
+
+
+    @Html.Label(@pres.Name)
+    <div class="form-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    
+    //=============================================
+    <div>
+        <div id="content">
+            @Html.Action("CaptchaPartial")
+        </div>
+        <input type="submit" value=@pres.Register class="btn btn-primary" />
+    </div>
+    //=============================================
+}

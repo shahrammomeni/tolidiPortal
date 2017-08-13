@@ -1,0 +1,43 @@
+﻿@model tpr.Models.RegisterViewModel
+@using pres = Resources.Resource;
+@{
+    ViewBag.Title = @pres.Register;
+}
+
+<b style="color:red">
+    @Html.ValidationSummary((ViewData["err"] ?? string.Empty).ToString())
+</b>
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-field">
+        @Html.TextBoxFor(m => m.Name, new { placeholder = pres.Name, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-field">
+        @Html.TextBoxFor(m => m.UserName, new { placeholder = pres.Mobile, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(model => model.UserName)
+    </div>
+
+    <div class="form-field">
+        @Html.PasswordFor(m => m.Password, new { placeholder = pres.Password, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    <div class="form-field">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = pres.reg2, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+    //=============================================
+    <div>
+        <div id="content">
+            @Html.Action("CaptchaPartial")
+        </div>
+        <input type="submit" value=@pres.Register class="btn btn-primary" />
+    </div>
+    //=============================================
+}

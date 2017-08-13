@@ -1,0 +1,13 @@
+@using pres = Resources.Resource;
+
+@if(!Request.IsAuthenticated) {
+    @Html.ActionLink(pres.Register, "Register", "Account") 
+    @: | 
+    @Html.ActionLink(pres.LogIn, "Login", "Account")
+}
+else {
+    @: <b>@User.Identity.Name</b>!
+    
+    @: |
+    @Html.ActionLink(pres.Logout, "LogOff", "Account")
+}

@@ -1,0 +1,34 @@
+﻿@model tpr.Models.LoginViewModel
+@using pres = Resources.Resource;
+
+@{
+    ViewBag.Title = pres.LogIn;
+}
+<h2>@ViewBag.Title</h2>
+<hr />
+<b style="color:red">
+    @Html.ValidationSummary(true, (ViewData["err"] ?? string.Empty).ToString())
+</b>
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }
+                                    , FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-field">
+        @Html.TextBoxFor(m => m.UserName, new { placeholder = pres.Mobile, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+
+    <div class="form-field">
+        @Html.PasswordFor(m => m.Password, new { placeholder = pres.Password, @class = "form-control", style = "width:250px;font-size:16px;" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    //=============================================
+    <div>
+        <div id="content">
+            @Html.Action("CaptchaPartial")
+        </div>
+        <input type="submit" value=@pres.LogIn class="btn btn-primary" />
+    </div>
+    //=============================================
+}
